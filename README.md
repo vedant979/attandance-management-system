@@ -1,22 +1,25 @@
-
-
-Here's a project markup for your GitHub repository:  
-
 ---
 
-# Weather Reporting System
+# Attendance Management System
 
-This is a .NET-based console application designed to fetch and display weather reports, including temperature, humidity, and weather forecasts. The system leverages generic APIs for weather data and utilizes Redis caching to optimize performance. SQLite is used as the relational database for storing necessary data.
+This is a robust .NET-based console application designed for managing attendance in an organization. It includes features for authentication, authorization, and hierarchical management of users, along with detailed attendance tracking and reporting. The system leverages SQLite for data storage and Redis for caching frequently accessed data to improve performance.
 
 ---
 
 ## 🚀 Features
 
-- Fetch real-time weather reports such as temperature, humidity, and forecasts.
-- Redis caching for low-latency and efficient data retrieval.
-- Automatic cache updates every 1-2 hours to reflect the latest weather predictions.
-- SQLite database for lightweight and efficient relational data storage.
-- Console-based interface for straightforward output.
+- **User Authentication & Authorization**:  
+  Secure login with role-based access control (RBAC) for admin, managers, and employees.  
+- **Hierarchical Management**:  
+  Role hierarchy for managing attendance records across teams or departments.  
+- **Attendance Tracking**:  
+  Track employee check-in, check-out times, and total hours worked.  
+- **Customizable Leave Management**:  
+  Manage employee leaves with approval workflows.  
+- **Reporting**:  
+  Generate detailed attendance and leave reports.  
+- **Caching**:  
+  Redis caching for frequently queried data to improve performance.
 
 ---
 
@@ -25,23 +28,26 @@ This is a .NET-based console application designed to fetch and display weather r
 - **Programming Language**: .NET Framework/Core  
 - **Database**: SQLite  
 - **Caching**: Redis  
-- **APIs**: Generic weather APIs for fetching real-time data  
+- **Authentication & Authorization**: Role-based access control (RBAC)  
+- **APIs**: REST APIs for interaction with attendance and user data  
 
 ---
 
 ## 📂 Project Structure
 
 ```
-weather-forecast-system/
-├── ER/                     // Contains Entity-Relationship (ER) diagrams
-├── Project6/               // Main project folder with source code
+attendance-management-system/
+├── ER/                     // Entity-Relationship (ER) diagrams
+├── Project/                // Main project folder with source code
 │   ├── Program.cs          // Main entry point for the console application
-│   ├── Models/             // Models for weather data and forecasts
-│   ├── Services/           // Contains API, caching, and database services
-│   └── appsettings.json    // Configuration file (e.g., API keys, Redis, DB connection)
-├── Project6.Tests/         // Unit and integration tests
-│   └── WeatherServiceTests.cs
-├── Project6.sln            // Solution file for the .NET project
+│   ├── Models/             // Models for users, roles, and attendance records
+│   ├── Services/           // Authentication, authorization, and attendance services
+│   ├── Repositories/       // Data access layer for SQLite
+│   ├── Controllers/        // Business logic controllers
+│   └── appsettings.json    // Configuration file (API keys, Redis, DB connection)
+├── Project.Tests/          // Unit and integration tests
+│   └── AttendanceServiceTests.cs
+├── Project.sln             // Solution file for the .NET project
 ├── README.md               // Documentation for the project
 └── .DS_Store               // System file (can be ignored)
 ```
@@ -60,8 +66,8 @@ weather-forecast-system/
 
 1. Clone the repository:  
    ```bash
-   git clone [https://github.com/your-username/WeatherReportingSystem.git](https://github.com/vedant979/weather-forecast-system)
-   cd weather-forecast-system
+   git clone https://github.com/vedant979/attendance-management-system.git
+   cd attendance-management-system
    ```
 
 2. Configure the application:  
@@ -86,25 +92,37 @@ weather-forecast-system/
 
 ## 🌐 API Integration
 
-This project uses generic weather APIs. Replace `<Your-API-Key>` in `appsettings.json` with your actual API key. Ensure the API endpoints are correctly configured in the `ApiClient.cs` file.
+The system uses REST APIs for managing attendance records and user roles. Update the necessary endpoints in `appsettings.json` or in the respective service files.
 
 ---
 
 ## 🗄️ Caching with Redis
 
-- Redis is used for caching weather data to reduce API calls and improve response times.  
-- Cache updates occur automatically every 1-2 hours to ensure data freshness.
+- Redis is used to cache user roles, frequently accessed attendance records, and reports.  
+- Cache invalidation occurs automatically on data updates to ensure consistency.
 
 ---
 
 ## 🗃️ Database Schema
 
-- **Table**: WeatherData  
-  - `Id` (int, Primary Key)  
-  - `Temperature` (float)  
-  - `Humidity` (float)  
-  - `Forecast` (string)  
-  - `Timestamp` (datetime)
+### **Users Table**
+- `Id` (int, Primary Key)  
+- `Name` (string)  
+- `Email` (string, unique)  
+- `PasswordHash` (string)  
+- `Role` (string)  
+
+### **Attendance Table**
+- `Id` (int, Primary Key)  
+- `UserId` (int, Foreign Key)  
+- `CheckIn` (datetime)  
+- `CheckOut` (datetime)  
+- `HoursWorked` (float)  
+
+### **Roles Table**
+- `Id` (int, Primary Key)  
+- `RoleName` (string)  
+- `Permissions` (string)  
 
 ---
 
@@ -127,8 +145,6 @@ This project uses generic weather APIs. Replace `<Your-API-Key>` in `appsettings
 
 ---
 
----
-
 ## 📧 Contact
 
 For any inquiries, feel free to reach out:  
@@ -136,4 +152,4 @@ For any inquiries, feel free to reach out:
 
 --- 
 
-This markup provides an organized and professional structure for your GitHub repository. Let me know if you'd like to add more details!
+Let me know if you'd like to refine this further!
