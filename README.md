@@ -32,20 +32,18 @@ This is a .NET-based console application designed to fetch and display weather r
 ## 📂 Project Structure
 
 ```
-WeatherReportingSystem/
-├── Data/
-│   ├── WeatherDbContext.cs  // Database context for SQLite
-│   └── Migrations/          // Database migrations
-├── Services/
-│   ├── WeatherService.cs    // Fetch and process weather data
-│   ├── CachingService.cs    // Manage Redis caching
-│   └── ApiClient.cs         // Handle API calls
-├── Models/
-│   ├── WeatherData.cs       // Weather data model
-│   └── Forecast.cs          // Weather forecast model
-├── Program.cs               // Main entry point
-├── appsettings.json         // Configuration file (e.g., API keys, Redis, DB connection)
-└── README.md                // Documentation
+weather-forecast-system/
+├── ER/                     // Contains Entity-Relationship (ER) diagrams
+├── Project6/               // Main project folder with source code
+│   ├── Program.cs          // Main entry point for the console application
+│   ├── Models/             // Models for weather data and forecasts
+│   ├── Services/           // Contains API, caching, and database services
+│   └── appsettings.json    // Configuration file (e.g., API keys, Redis, DB connection)
+├── Project6.Tests/         // Unit and integration tests
+│   └── WeatherServiceTests.cs
+├── Project6.sln            // Solution file for the .NET project
+├── README.md               // Documentation for the project
+└── .DS_Store               // System file (can be ignored)
 ```
 
 ---
